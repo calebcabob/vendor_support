@@ -13,49 +13,24 @@
 #   include vendor/support/common.mk
 #
 
-ifeq ($(LOCAL_USE_AAPT2),true)
-LOCAL_STATIC_ANDROID_LIBRARIES += \
-    android-support-annotations \
-    android-support-v4 \
-    VendorSupportLib
-else
-LOCAL_RESOURCE_DIR += $(call my-dir)/res
+LOCAL_RESOURCE_DIR := \
+    $(LOCAL_PATH)/res
 
+LOCAL_STATIC_ANDROID_LIBRARIES := \
+    androidx.annotation_annotation \
+    androidx.core_core \
+    androidx.appcompat_appcompat \
+    androidx.preference_preference \
+    androidx.recyclerview_recyclerview \
+    VendorSupportLib
 
 ## Include transitive dependencies below
 
-# Include support-v7-appcompat, if not already included
-ifeq (,$(findstring android-support-v7-appcompat,$(LOCAL_STATIC_JAVA_LIBRARIES)))
-LOCAL_RESOURCE_DIR += frameworks/support/v7/appcompat/res
-LOCAL_AAPT_FLAGS += --extra-packages android.support.v7.appcompat
-LOCAL_STATIC_JAVA_LIBRARIES += android-support-v7-appcompat
-endif
+# Include androidx support libs if not already included
+#ifeq (,$(findstring androidx-preference,$(LOCAL_STATIC_JAVA_LIBRARIES)))
+#LOCAL_RESOURCE_DIR += frameworks/support/x/preference/res
+#LOCAL_AAPT_FLAGS += --extra-packages androidx.preference
+#LOCAL_STATIC_JAVA_LIBRARIES += androidx-preference
+#endif
 
-# Include support-v7-recyclerview, if not already included
-ifeq (,$(findstring android-support-v7-recyclerview,$(LOCAL_STATIC_JAVA_LIBRARIES)))
-LOCAL_RESOURCE_DIR += frameworks/support/v7/recyclerview/res
-LOCAL_AAPT_FLAGS += --extra-packages android.support.v7.recyclerview
-LOCAL_STATIC_JAVA_LIBRARIES += android-support-v7-recyclerview
-endif
-
-# Include android-support-v7-preference, if not already included
-ifeq (,$(findstring android-support-v7-preference,$(LOCAL_STATIC_JAVA_LIBRARIES)))
-LOCAL_RESOURCE_DIR += frameworks/support/v7/preference/res
-LOCAL_AAPT_FLAGS += --extra-packages android.support.v7.preference
-LOCAL_STATIC_JAVA_LIBRARIES += android-support-v7-preference
-endif
-
-# Include android-support-v14-preference, if not already included
-ifeq (,$(findstring android-support-v14-preference,$(LOCAL_STATIC_JAVA_LIBRARIES)))
-LOCAL_RESOURCE_DIR += frameworks/support/v14/preference/res
-LOCAL_AAPT_FLAGS += --extra-packages android.support.v14.preference
-LOCAL_STATIC_JAVA_LIBRARIES += android-support-v14-preference
-endif
-
-LOCAL_AAPT_FLAGS += --auto-add-overlay --extra-packages com.aquarios.support
-
-LOCAL_STATIC_JAVA_LIBRARIES += \
-    android-support-annotations \
-    android-support-v4 \
-    VendorSupportLib
-endif
+    

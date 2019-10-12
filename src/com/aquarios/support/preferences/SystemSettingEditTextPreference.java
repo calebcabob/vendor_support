@@ -17,9 +17,10 @@
 package com.aquarios.support.preferences;
 
 import android.content.Context;
-import android.support.v7.preference.EditTextPreference;
 import android.text.TextUtils;
 import android.util.AttributeSet;
+
+import androidx.preference.EditTextPreference;
 
 public class SystemSettingEditTextPreference extends EditTextPreference {
     private boolean mAutoSummary = false;
@@ -66,4 +67,3 @@ public class SystemSettingEditTextPreference extends EditTextPreference {
         super.setSummary(summary);
     }
 }
-

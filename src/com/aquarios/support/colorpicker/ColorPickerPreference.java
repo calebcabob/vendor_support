@@ -28,7 +28,6 @@ import android.graphics.drawable.shapes.OvalShape;
 import android.os.Bundle;
 import android.os.Parcel;
 import android.os.Parcelable;
-import android.support.v7.preference.*;
 import android.util.AttributeSet;
 import android.view.View;
 import android.view.ViewGroup.LayoutParams;
@@ -36,6 +35,11 @@ import android.view.WindowManager;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+
+import androidx.preference.Preference;
+import androidx.preference.Preference.OnPreferenceClickListener;
+import androidx.preference.PreferenceViewHolder;
+import androidx.preference.SwitchPreference;
 
 import com.aquarios.support.R;
 
@@ -60,8 +64,6 @@ public class ColorPickerPreference extends Preference implements
     static final int DEF_VALUE_DEFAULT = -6;
     boolean mUsesDefaultButton = false;
     int mDefValue = -1;
-
-    private boolean mShowLedPreview;
 
     private EditText mEditText;
 
@@ -100,7 +102,6 @@ public class ColorPickerPreference extends Preference implements
                 mUsesDefaultButton =  true;
                 mDefValue = defVal;
             }
-            mShowLedPreview = attrs.getAttributeBooleanValue(null, "ledPreview", false);
         }
     }
 
@@ -254,7 +255,7 @@ public class ColorPickerPreference extends Preference implements
     }
 
     protected void showDialog(Bundle state) {
-        mDialog = new ColorPickerDialog(getContext(), mValue, mShowLedPreview);
+        mDialog = new ColorPickerDialog(getContext(), mValue);
         mDialog.setOnColorChangedListener(this);
         if (mAlphaSliderEnabled) {
             mDialog.setAlphaSliderVisible(true);

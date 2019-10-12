@@ -26,9 +26,6 @@
     <string name="set">Set</string>
     <string name="color_default">Default</string>
 
-    <!-- IconPack Preference -->
-    <string name="default_iconpack_title">Default</string>
-
     <string name="edit_hint">Value</string>
     <string name="seek_value_edit_label">Set value</string>
     <string name="ok">OK</string>

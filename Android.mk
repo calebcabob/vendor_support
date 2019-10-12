@@ -1,17 +1,19 @@
-LOCAL_PATH := $(call my-dir)
+LOCAL_PATH:= $(call my-dir)
 include $(CLEAR_VARS)
+
+LOCAL_SRC_FILES := \
+        $(call all-logtags-files-under, src)
 
 LOCAL_USE_AAPT2 := true
 
 LOCAL_MODULE := VendorSupportLib
 
-LOCAL_SHARED_ANDROID_LIBRARIES := \
-    android-support-annotations \
-    android-support-v4 \
-    android-support-v7-recyclerview \
-    android-support-v7-preference \
-    android-support-v7-appcompat \
-    android-support-v14-preference
+LOCAL_STATIC_ANDROID_LIBRARIES := \
+    androidx.annotation_annotation \
+    androidx.core_core \
+    androidx.appcompat_appcompat \
+    androidx.preference_preference \
+    androidx.recyclerview_recyclerview \
 
 LOCAL_RESOURCE_DIR := $(LOCAL_PATH)/res
 
